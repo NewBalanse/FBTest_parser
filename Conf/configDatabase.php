@@ -22,7 +22,7 @@ class configDatabase
         $this->host = 3306;
         $this->userName = "root";
         $this->password = "X2yhsg3j7a9E3159";
-        $this->dbName = "";
+        $this->dbName = "facebookdb";
     }
 
     /**

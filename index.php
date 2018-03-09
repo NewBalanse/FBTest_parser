@@ -1,11 +1,15 @@
 <?php
+//threads
 require_once "DataProvider.php";
 require_once "DaraWorker.php";
 require_once "Workers.php";
+//Parser and component
 require_once "Prefabs/Registrator.php";
-require_once "Prefabs/PhoneRegistration.php";
 require_once "Prefabs/FBRegistration.php";
 require_once "Prefabs/FbParser.php";
+//database
+require_once "Controller/ConectDB.php";
+require_once "Conf/configDatabase.php";
 
 include "vendor/autoload.php";
 
@@ -74,7 +78,22 @@ $isRegistrations = false;
 $_BotFbParser = null;
 
 try {
+
+    $configurateDatabase = new configDatabase();
+
+    $ConectDatabase = new ConectDB(
+        $configurateDatabase->getHost(),
+        $configurateDatabase->getPort(),
+        $configurateDatabase->getUserName(),
+        $configurateDatabase->getPassword(),
+        $configurateDatabase->getDbName()
+    );
+
+    $ConectDatabase->ConnectionDB();
+
+    /*
     $_BotFbParser = new FbParser();
+    //$_BotFbParser->Test("https://www.facebook.com/profile.php?id=100010051332337&ref=br_rs");
     $isStart = OnStart($_BotFbParser);
 
     if ($isStart) {
@@ -82,7 +101,7 @@ try {
             $_BotFbParser,
             array(
                 "Павел",
-                "Оле",
+                "Оля",
                 "Юрий",
                 "Анжелика",
                 "Алла",
@@ -128,7 +147,7 @@ try {
             }
         }
     }
-    //}
+    //}*/
 
 
 } catch (Exception $exception) {
